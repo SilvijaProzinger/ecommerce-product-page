@@ -22,7 +22,7 @@
 <header class="header">
   <div class="header__container">
     <div class="menu__left">
-      <button class="button__no-style button__mobile-menu" tabindex="0" aria-label="open menu">
+      <button class="button__no-style button__mobile-menu" id="openMenu" tabindex="0" aria-label="open menu">
         <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
         focusable="false"><path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" fill="#69707D" fill-rule="evenodd"/></svg>
         <span class="visually-hidden">Menu</span>
@@ -33,22 +33,24 @@
           alt="Sneakers logo"
           class="logo__img"/>
       </h1>
-      <ul class="menu">
-        <button class="button__no-style button__menu-close" tabindex="0" aria-label="close menu">
-          <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"  aria-hidden="true"
-          focusable="false"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/></svg>
-          <span class="visually-hidden">Close menu</span>
-        </button>
-        <li class="menu__item"><a href="#">Collections</a></li>
-        <li class="menu__item"><a href="#">Men</a></li>
-        <li class="menu__item"><a href="#">Women</a></li>
-        <li class="menu__item"><a href="#">About</a></li>
-        <li class="menu__item"><a href="#">Contact</a></li>
-      </ul>
+      <div class="menu__overlay" id="menuOverlay">
+        <ul class="menu" id="menu">
+          <button class="button__no-style button__menu-close" id="closeMenu" tabindex="0" aria-label="close menu">
+            <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"  aria-hidden="true"
+            focusable="false"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/></svg>
+            <span class="visually-hidden">Close menu</span>
+          </button>
+          <li class="menu__item"><a href="#">Collections</a></li>
+          <li class="menu__item"><a href="#">Men</a></li>
+          <li class="menu__item"><a href="#">Women</a></li>
+          <li class="menu__item"><a href="#">About</a></li>
+          <li class="menu__item"><a href="#">Contact</a></li>
+        </ul>
+      </div>
     </div>
     <div class="menu__right">
       <button class="button__no-style button__minicart" id="showCart" tabindex="0" aria-label="open shopping cart">
-        <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#000000" fill-rule="nonzero"/></svg>
+        <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#b6bcc8" fill-rule="nonzero"/></svg>
         <span class="visually-hidden">Cart</span>
       </button>
       <button class="button__no-style button__account" id="showAccount" tabindex="0" aria-label="open account">
@@ -56,7 +58,7 @@
         <span class="visually-hidden">My account</span>
       </button>
     </div>
-    <section class="minicart visually-hidden" id="minicartContainer">
+    <section class="minicart minicart__hidden" id="minicartContainer">
       <p class="cart__title"><strong>Cart</strong></p>
       <div class="minicart__empty" id="if-empty">
         <strong>Your cart is empty.</strong>
@@ -68,8 +70,8 @@
               <img src="./images/image-product-1-thumbnail.jpg" alt="Item name"/>
             </div> 
             <div class="cart__item-details">
-              <p class="cart__product-name">Fall Limited Edition Sneakers</p>
-              <p class="cart__product-price">$125.00</p>
+              <p class="cart__product-name"></p>
+              <p class="cart__product-price"></p>
               <p class="cart__product-qty" id="productQty"></p>
               <p class="cart__product-total" id="productTotal"></p>
             </div>
@@ -98,7 +100,7 @@
             <img class="thumbnail__img" src="./images/image-product-4-thumbnail.jpg" alt="sneakers image 4">
           </div>
         </div>
-        <div class="product__gallery__outer">
+        <div class="product__gallery__outer" id="productGallery">
           <div class="product__gallery__inner">
             <button class="button__close-gallery" id="closeGallery" tabindex="0" aria-label="close gallery">
               <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -138,9 +140,9 @@
         </p>
         <div class="add__to__cart__container">
           <div class="quantity__selector">
-            <button type="button" class="button__quantity" aria-label="Subtract one" data-direction="-1" disabled="disabled"><span>&#8722;</span></button>
-            <input data-min="1" data-max="0" type="text" name="quantity" value="1" readonly="true">
-            <button type="button" class="button__quantity" aria-label="Add one" data-direction="1"><span>&#43;</span></button>
+            <button type="button" class="button__quantity" id="decreaseQty" aria-label="Subtract one" data-direction="-1"><span>&#8722;</span></button>
+            <input min="1" max="100" type="number" name="quantity" value="1" readonly="true">
+            <button type="button" class="button__quantity" id="increaseQty" aria-label="Add one" data-direction="1"><span>&#43;</span></button>
           </div>
           <button class="button__primary button__add-to-cart" id="addToCart" tabindex="0" aria-label="add to cart">
             <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
@@ -156,5 +158,7 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://www.github.com/SilvijaProzinger">Silvija Prozinger</a>.
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
