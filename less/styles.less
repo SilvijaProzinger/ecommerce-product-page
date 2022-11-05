@@ -558,13 +558,19 @@ ul,ol,p {
                     img {
                         width: calc((100% / 4) - 20px);
                         height: auto;
+                        border: 3px solid transparent;
 
                         &:hover {
                             opacity: 0.5;
                             cursor: pointer;
+                            border: 3px solid @primary__orange;
                         }
                     }
 
+                    img.active {
+                        opacity: 0.5;
+                        border: 3px solid @primary__orange;
+                    }
                   
                 }
             }
@@ -678,5 +684,41 @@ ul,ol,p {
     .button__gallery-next {
         width: 40px;
         height: 40px;
+    }
+}
+
+/* large desktop */
+
+@media only screen and (min-width: 1600px){
+    .button__primary {
+        font-size: 1.25rem;
+    }
+
+    .header__container {
+        .menu {
+            .menu__item {
+                a {
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+    .product__container {
+        .product__info {
+            .product__name {
+                font-size: 3.1rem;
+            }
+
+            .product__desc {
+                font-size: 1.6rem;
+            }
+
+            .product__price__container {
+                font-size: 1.25rem;
+                .current__price {
+                    font-size: 2rem;
+                }
+            }
+        }
     }
 }
