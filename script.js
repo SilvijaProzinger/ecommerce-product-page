@@ -10,10 +10,15 @@ const mobileResolution = window.matchMedia("(max-width: 1023px)")
       addToCartButton = document.getElementById('addToCart')
       deleteFromCartButton = document.getElementById('deleteFromCart')
       cart = []
-      productImagesThumbnails = Array.from(document.getElementById('productImagesThumbnails').children)
-    
-let selectedQuantity = 1;
+      productImagesThumbnails = Array.from(document.querySelectorAll('.thumbnail__img'))
+      closeGalleryButton = document.getElementById('closeGallery')
+      previousGalleryButton = document.getElementById('prevGallery')
+      nextGalleryButton = document.getElementById('nextGallery')
+
+let selectedQuantity = 1
     mainImage = document.getElementById('mainImg')
+    mainImageGallery = document.getElementById('mainImgGallery')
+    imageCounter = 1
 
 function Product(name, price, qty, total) {
     this.name = name;
@@ -143,19 +148,59 @@ const addToCart = () => {
 addToCartButton.addEventListener('click', addToCart)
 deleteFromCart.addEventListener('click', deleteItemFromCart)
 
-productImagesThumbnails.forEach(function(thumbnail){
-    thumbnail.addEventListener('click', function(){
-        thumbnail.classList.add('active')
-        const thumbnailSrc = thumbnail.getAttribute('src')
-        const selectedImageSrc = thumbnailSrc.replace('-thumbnail','')
-        mainImage.src = selectedImageSrc
-    })
-})
-
 const openLightBox = () => {
     document.getElementById('productGallery').style.display = 'block'
 }
 
+const closeLightBox = () => {
+    document.getElementById('productGallery').style.display = 'none'
+}
+
 mainImage.addEventListener('click', openLightBox)
+closeGalleryButton.addEventListener('click', closeLightBox)
 
+const toggleByThumbnails = e => {
+    const thumbnail = e.target
+    const thumbnailSrc = thumbnail.getAttribute('src')
+    const selectedImageSrc = thumbnailSrc.replace('-thumbnail','')
+    mainImage.src = selectedImageSrc
 
+    toggleActiveThumbnailClass(thumbnailSrc)
+}
+
+const toggleActiveThumbnailClass = thumbnailSrc => {
+    for (let i=0; i<productImagesThumbnails.length; i++){
+        if (productImagesThumbnails[i].getAttribute('src') === thumbnailSrc){
+            productImagesThumbnails[i].classList.add('active')
+        } else {
+            productImagesThumbnails[i].classList.remove('active')
+        }
+    }
+}
+
+productImagesThumbnails.forEach(function(thumbnail){
+    thumbnail.addEventListener('click', toggleByThumbnails)      
+})
+
+const previousImage = () => {
+    console.log(imageCounter)
+    imageCounter--
+    if (imageCounter < 1){
+        imageCounter = 4
+    }
+    console.log(imageCounter)
+    mainImageGallery.src = `./images/image-product-${imageCounter}.jpg`
+}
+
+const nextImage = () => {
+    console.log(imageCounter)
+    imageCounter++
+    if (imageCounter > 4){
+        imageCounter = 1
+    }
+    console.log(imageCounter)
+    mainImageGallery.src = `./images/image-product-${imageCounter}.jpg`
+}
+
+previousGalleryButton.addEventListener('click', previousImage)
+nextGalleryButton.addEventListener('click', nextImage)

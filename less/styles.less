@@ -506,11 +506,30 @@ ul,ol,p {
                         img {
                             width: 90px;
                             height: auto;
+                            border: 3px solid transparent;
     
                             &:hover {
                                 opacity: 0.5;
                                 cursor: pointer;
                             }
+                        }
+
+                        img.active {
+                            border: 3px solid @primary__orange;
+                            position: relative;
+                            z-index: 0;
+                        }
+
+                        img.active::before {
+                            content: ""; 
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: @neutral__white;
+                            opacity: 0.5;
+                            z-index: 1;
                         }
 
                         img:not(:last-of-type){
@@ -548,6 +567,12 @@ ul,ol,p {
 
                 img {
                     border-radius: 8px;
+                }
+
+                .main__img {
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
 
                 .thumbnails {
