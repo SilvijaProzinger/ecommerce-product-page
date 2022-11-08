@@ -27,9 +27,9 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop screenshot](.images/screenshot_desktop.png)
-![Desktop with minicart screenshot](.images/screenshot_desktop_2.png)
-![Mobile screenshot](.images/screenshot_mobile.png)
+![Desktop screenshot](./images/screenshot_desktop.png)
+![Desktop with minicart screenshot](./images/screenshot_desktop_2.png)
+![Mobile screenshot](./images/screenshot_mobile.png)
 
 ### Links
 
