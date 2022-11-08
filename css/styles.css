@@ -572,7 +572,4 @@ p {
   .product__container .product__info .product__price__container .current__price {
     font-size: 2rem;
   }
-  .product__container .product__image__container .product__gallery__outer .product__gallery__inner {
-    top: 20%;
-  }
 }

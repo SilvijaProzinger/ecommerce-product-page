@@ -166,6 +166,8 @@ const closeLightBox = () => {
     }
 }
 
+window.addEventListener('resize', closeLightBox)
+
 mainImage.addEventListener('click', openLightBox)
 closeGalleryButton.addEventListener('click', closeLightBox)
 
