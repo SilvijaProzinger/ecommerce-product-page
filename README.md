@@ -12,8 +12,6 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
   - [Built with](#built-with)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -29,13 +27,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](.images/screenshot_desktop.png)
-![](.images/screenshot_desktop_2.png)
-![](.images/screenshot_desktop_3.png)
+![Desktop screenshot](.images/screenshot_desktop.png)
+![Desktop with minicart screenshot](.images/screenshot_desktop_2.png)
+![Mobile screenshot](.images/screenshot_mobile.png)
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [GitHub Pages preview](https://silvijaprozinger.github.io/ecommerce-product-page/)
 
 ## My process
 
