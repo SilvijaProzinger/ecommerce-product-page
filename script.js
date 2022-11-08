@@ -10,15 +10,17 @@ const mobileResolution = window.matchMedia("(max-width: 1023px)")
       addToCartButton = document.getElementById('addToCart')
       deleteFromCartButton = document.getElementById('deleteFromCart')
       cart = []
-      productImagesThumbnails = Array.from(document.querySelectorAll('.thumbnail__img'))
+      productImagesThumbnails = Array.from(document.getElementById('productImagesThumbnails').children)
+      galleryImagesThumbnails = Array.from(document.getElementById('productGalleryThumbnails').children)
       closeGalleryButton = document.getElementById('closeGallery')
       previousGalleryButton = document.getElementById('prevGallery')
       nextGalleryButton = document.getElementById('nextGallery')
+      allThumbnails = Array.from(document.querySelectorAll('.thumbnail__img'))
 
 let selectedQuantity = 1
     mainImage = document.getElementById('mainImg')
     mainImageGallery = document.getElementById('mainImgGallery')
-    imageCounter = 1
+    imageCounter = 0
 
 function Product(name, price, qty, total) {
     this.name = name;
@@ -28,6 +30,7 @@ function Product(name, price, qty, total) {
 }
 
 const toggleMobileMenu = () => {
+    menu.style.visibility = 'visible'
     if (menu.classList.contains('menu__active')){
         menu.classList.add('menu__hidden')
         menu.classList.remove('menu__active')
@@ -70,6 +73,7 @@ window.addEventListener('load', mobileOrDesktopMenu)
 window.addEventListener('resize', mobileOrDesktopMenu)
 
 const toggleMinicart = () => {
+    minicart.style.visibility = 'visible'
     if (minicart.classList.contains('minicart__hidden')){
         minicart.classList.add('minicart__active')
         minicart.classList.remove('minicart__hidden')
@@ -149,57 +153,86 @@ addToCartButton.addEventListener('click', addToCart)
 deleteFromCart.addEventListener('click', deleteItemFromCart)
 
 const openLightBox = () => {
-    document.getElementById('productGallery').style.display = 'block'
+    if (!mobileResolution.matches){
+        document.getElementById('productGallery').style.display = 'flex'
+    }
 }
 
 const closeLightBox = () => {
-    document.getElementById('productGallery').style.display = 'none'
+    if (!mobileResolution.matches){
+        document.getElementById('productGallery').style.display = 'none'
+    } else {
+        document.getElementById('productGallery').style.display = 'block'
+    }
 }
 
 mainImage.addEventListener('click', openLightBox)
 closeGalleryButton.addEventListener('click', closeLightBox)
 
-const toggleByThumbnails = e => {
-    const thumbnail = e.target
-    const thumbnailSrc = thumbnail.getAttribute('src')
-    const selectedImageSrc = thumbnailSrc.replace('-thumbnail','')
-    mainImage.src = selectedImageSrc
+productImagesThumbnails.forEach(function toggleByThumbnails(thumbnail,index){
+    thumbnail.addEventListener('click', function(){
+        const thumbnailSrc = thumbnail.getAttribute('src')
+        const selectedImageSrc = thumbnailSrc.replace('-thumbnail','')
+        mainImage.src = selectedImageSrc
+        mainImageGallery.src = selectedImageSrc
+        imageCounter = index
 
-    toggleActiveThumbnailClass(thumbnailSrc)
-}
+        toggleActiveThumbnailClass(thumbnail,index)
+    })      
+})
 
-const toggleActiveThumbnailClass = thumbnailSrc => {
-    for (let i=0; i<productImagesThumbnails.length; i++){
-        if (productImagesThumbnails[i].getAttribute('src') === thumbnailSrc){
-            productImagesThumbnails[i].classList.add('active')
+galleryImagesThumbnails.forEach(function toggleByThumbnailsGallery(thumbnail,index){
+    thumbnail.addEventListener('click', function(){ 
+        const thumbnailSrc = thumbnail.getAttribute('src')
+        const selectedImageSrc = thumbnailSrc.replace('-thumbnail','')
+        mainImageGallery.src = selectedImageSrc
+        imageCounter = index
+
+        toggleActiveThumbnailClass(thumbnail,index)
+    })      
+})
+
+const toggleActiveThumbnailClass = (thumbnail,index) => {
+    let thumbnailGroup
+
+    if (thumbnail.parentElement === document.getElementById('productImagesThumbnails')){
+        thumbnailGroup = productImagesThumbnails
+    } else {
+        thumbnailGroup = galleryImagesThumbnails
+    }
+    for (let i=0; i < thumbnailGroup.length; i++){
+        if (i === index){
+            thumbnailGroup[i].classList.add('active')
         } else {
-            productImagesThumbnails[i].classList.remove('active')
+            thumbnailGroup[i].classList.remove('active')
         }
     }
 }
 
-productImagesThumbnails.forEach(function(thumbnail){
-    thumbnail.addEventListener('click', toggleByThumbnails)      
-})
-
 const previousImage = () => {
-    console.log(imageCounter)
     imageCounter--
-    if (imageCounter < 1){
-        imageCounter = 4
+    if (imageCounter < 0){
+        imageCounter = 3
     }
-    console.log(imageCounter)
-    mainImageGallery.src = `./images/image-product-${imageCounter}.jpg`
+    mainImageGallery.src = `./images/image-product-${imageCounter+1}.jpg`
+
+    toggleActiveThumbnailClass(galleryImagesThumbnails, imageCounter)
 }
 
 const nextImage = () => {
-    console.log(imageCounter)
     imageCounter++
-    if (imageCounter > 4){
-        imageCounter = 1
+    if (imageCounter > 3){
+        imageCounter = 0
     }
-    console.log(imageCounter)
-    mainImageGallery.src = `./images/image-product-${imageCounter}.jpg`
+    mainImageGallery.src = `./images/image-product-${imageCounter+1}.jpg`
+
+    for (let i=0; i < galleryImagesThumbnails.length; i++){
+        if (i === imageCounter){
+            galleryImagesThumbnails[i].classList.add('active')
+        } else {
+            galleryImagesThumbnails[i].classList.remove('active')
+        }
+    }
 }
 
 previousGalleryButton.addEventListener('click', previousImage)
