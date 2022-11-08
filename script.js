@@ -22,7 +22,7 @@ let selectedQuantity = 1
     mainImageGallery = document.getElementById('mainImgGallery')
     imageCounter = 0
 
-function Product(name, price, qty, total) {
+function Product (name, price, qty, total) {
     this.name = name;
     this.price = price;
     this.qty = qty;
@@ -195,6 +195,7 @@ galleryImagesThumbnails.forEach(function toggleByThumbnailsGallery(thumbnail,ind
 const toggleActiveThumbnailClass = (thumbnail,index) => {
     let thumbnailGroup
 
+    //toggle active class based on whether the thumbnail is in gallery or not
     if (thumbnail.parentElement === document.getElementById('productImagesThumbnails')){
         thumbnailGroup = productImagesThumbnails
     } else {
@@ -225,14 +226,8 @@ const nextImage = () => {
         imageCounter = 0
     }
     mainImageGallery.src = `./images/image-product-${imageCounter+1}.jpg`
-
-    for (let i=0; i < galleryImagesThumbnails.length; i++){
-        if (i === imageCounter){
-            galleryImagesThumbnails[i].classList.add('active')
-        } else {
-            galleryImagesThumbnails[i].classList.remove('active')
-        }
-    }
+    
+    toggleActiveThumbnailClass(galleryImagesThumbnails, imageCounter)  
 }
 
 previousGalleryButton.addEventListener('click', previousImage)
