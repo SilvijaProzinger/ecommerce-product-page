@@ -95,9 +95,21 @@ ul,ol,p {
 }
 
 .button__minicart {
+    position: relative;
+
     &:hover {
         cursor: pointer;
     }
+}
+
+.minicart__qty-badge:not(:empty) {
+    background-color: @primary__orange;
+    border-radius: 12px;
+    position: absolute;
+    right: 3px;
+    top: -10px;
+    color: @neutral__white;
+    padding: 2px 5px;
 }
 
 .button__minicart-active {

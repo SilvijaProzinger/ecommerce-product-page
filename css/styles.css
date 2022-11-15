@@ -59,8 +59,20 @@ p {
   background-color: transparent;
   border: none;
 }
+.button__minicart {
+  position: relative;
+}
 .button__minicart:hover {
   cursor: pointer;
+}
+.minicart__qty-badge:not(:empty) {
+  background-color: hsl(26, 100%, 55%);
+  border-radius: 12px;
+  position: absolute;
+  right: 3px;
+  top: -10px;
+  color: hsl(0, 0%, 100%);
+  padding: 2px 5px;
 }
 .button__minicart-active svg path {
   fill: hsl(0, 0%, 0%);
