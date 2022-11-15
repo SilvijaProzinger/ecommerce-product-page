@@ -13,15 +13,19 @@ const lightboxGallery = (function(){
 
 const openLightBox = () => {
     if (!mobileResolution.matches){
-        document.getElementById('productGallery').style.display = 'flex'
+        document.querySelector('body').classList.add('noscroll')
+        document.getElementById('productGallery').classList.add('gallery__active__desktop')
+        document.getElementById('productGallery').classList.remove('gallery__inactive')
     }
 }
 
 const closeLightBox = () => {
     if (!mobileResolution.matches){
-        document.getElementById('productGallery').style.display = 'none'
+        document.getElementById('productGallery').classList.add('gallery__inactive')
+        document.getElementById('productGallery').classList.remove('gallery__active__desktop')
+        document.querySelector('body').classList.remove('noscroll')
     } else {
-        document.getElementById('productGallery').style.display = 'block'
+        document.getElementById('productGallery').classList.add('gallery__active__mobile')
     }
 }
 
@@ -90,6 +94,18 @@ const nextImage = () => {
     
     toggleActiveThumbnailClass(galleryImagesThumbnails, imageCounter)  
 }
+
+const mobileOrDestkopGallery = () => {
+    if (mobileResolution.matches) {
+        document.getElementById('productGallery').classList.add('gallery__active__mobile')
+        document.getElementById('productGallery').classList.remove('gallery__inactive')
+    } else {
+        document.getElementById('productGallery').classList.add('gallery__inactive')
+        document.getElementById('productGallery').classList.remove('gallery__active__mobile')
+    } 
+}
+
+window.addEventListener('resize', mobileOrDestkopGallery)
 
 previousGalleryButton.addEventListener('click', previousImage)
 nextGalleryButton.addEventListener('click', nextImage)

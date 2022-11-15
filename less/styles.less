@@ -38,6 +38,10 @@ ul,ol,p {
     font-size: @body__text-size;
 }
 
+.noscroll {
+    overflow: hidden;
+}
+
 .product__info {
     .product__company {
         text-transform: uppercase;
@@ -423,6 +427,20 @@ ul,ol,p {
         }
     }
 
+    .gallery__active__desktop {
+        display: flex !important;
+        overflow: auto !important;
+    }
+
+    .gallery__inactive {
+        display: none;
+    }
+
+    .gallery__active__mobile {
+        display: block;
+        overflow: initial;
+    }
+
     .product__info {
         margin-top: 1.6rem;
     }
@@ -497,7 +515,6 @@ ul,ol,p {
                 top: 0;
                 width: 100%;
                 height: 100%;
-                overflow: hidden;
                 background-color: fade(@neutral__black, 75%);
     
                 .product__gallery__inner {
