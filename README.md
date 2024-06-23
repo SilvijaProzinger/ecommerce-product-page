@@ -4,7 +4,7 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 
 ### GIF preview:
 
-![](https://github.com/SilvijaProzinger/ecommerce-product-page/tree/main/images/gif-preview.gif)
+![](https://github.com/SilvijaProzinger/ecommerce-product-page/blob/main/images/gif-preview.gif)
 
 ## Table of contents
 
