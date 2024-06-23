@@ -2,6 +2,10 @@
 
 This is a solution to the [E-commerce product page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
+### GIF preview:
+
+![](https://github.com/SilvijaProzinger/ecommerce-product-page/tree/main/images/gif-preview.gif)
+
 ## Table of contents
 
 - [Overview](#overview)
